@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>OMDB</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Movie List Application</h1>
+  </header>
+  <main>
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="Search for a movie...">
+      <button id="searchButton" onclick="findMovies()">
+        Search
+      </button>
+    </div>
+
+    <h3>Search Results</h3>
+    <div id="movieList"></div>
+
+    <h4>Results : <span id="totResSpan"></span></h4>
+    <h4>Total Pages : <span id="totPagesSpan"></span></h4>
+    <div id="pagination">
+        <button onclick="decPage()">Prev</button>
+        <span id="crntPageSpan"></span>
+        <button onclick="incPage()">Next</button>
+    </div>
+    <h4>Jump To :</h4>
+    <input type="number" id="enterPage" placeholder="Page Number">
+    <button id="submitPageButton" onclick="jumpPage()">Submit</button>
+
+    <div class="movie-details" id="movieDetails">
+        
+    <img src="https://m.media-amazon.com/images/M/MV5BMjE5MzcyNjk1M15BMl5BanBnXkFtZTcwMjQ4MjcxOQ@@._V1_SX300.jpg" alt="Iron Man 3 Poster">
+    <h2>Title: Iron Man 3</h2>
+    <p>Year: 2013</p>
+    <p>Rated: PG-13</p>
+    <p>Released: 03 May 2013</p>
+    <p>Runtime: 130 min</p>
+    <p>Genre: Action, Adventure, Sci-Fi</p>
+    <p>Director: Shane Black</p>
+    <p>Writer: Drew Pearce, Shane Black, Stan Lee</p>
+    <p>Actors: Robert Downey Jr., Guy Pearce, Gwyneth Paltrow</p>
+    <p>Plot: When Tony Stark's world is torn apart by a formidable terrorist called the Mandarin, he starts an odyssey of rebuilding and retribution.</p>
+    <p>Language: English</p>
+    <p>Country: United States</p>
+    <p>Awards: Nominated for 1 Oscar. 20 wins & 63 nominations total</p>
+    <p>Metascore: 62</p>
+    <p>IMDb Rating: 7.1</p>
+    <p>IMDb Votes: 872,517</p>
+    <p>Type: movie</p>
+    <p>DVD: 24 Sep 2013</p>
+    <p>Box Office: $409,013,994</p>
+    <p>Production: N/A</p>
+    </div>
+  </main>
+  <footer>
+    
+  </footer>
+  
+<script src="index.js" defer></script>
+</body>
+</html>
