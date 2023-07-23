@@ -1,6 +1,9 @@
-const url = "https://www.omdbapi.com/?apikey=cbe0bb3f&";
+const url = "https://www.omdbapi.com/?apikey=cbe0bb3f&";  //if key dont work enter here from readme.md
 const itemsPerPage = 10; 
-let currentPage = 1 , totalPages = 1;
+let currentPage = 1 , totalPages = 1 , crntId = "tt1300854";
+
+const reviewList = JSON.parse(localStorage.getItem("reviewList")) || [];
+
 
 const searchButton = document.getElementById('searchButton');
 const searchInput = document.getElementById('searchInput');
@@ -11,10 +14,14 @@ const totPagesSpan = document.getElementById('totPagesSpan');
 const crntPageSpan = document.getElementById('crntPageSpan');
 const enterPage = document.getElementById('enterPage');
 const movieDetails = document.getElementById('movieDetails'); 
+const givenRating = document.getElementById('givenRating');
+const givenReview = document.getElementById('givenReview');
+const review = document.getElementById('review');
 
 
 
 async function findMovies(){
+    console.log(reviewList);
     let val = searchInput.value;
     console.log(val);
     if(val==="")val = "avenger";
@@ -130,7 +137,7 @@ async function itemClicked()
 {
     var id = event.target.id;
     const data = await getMovie(id);
-    console.log(id);
+    // console.log(id);
     const poster = data.Poster !== 'N/A' ? data.Poster : 'poster.jpg';
     const childs = movieDetails.children;
     childs[0].src = poster;
@@ -155,36 +162,76 @@ async function itemClicked()
     childs[19].innerHTML = `<b>Box Office: </b>${data.BoxOffice}`;
     childs[20].innerHTML = `<b>Production: </b>${data.Production}`;
 
+    let idx = -1;
+    if(reviewList.length)idx=reviewList.findIndex(elmnt => String(elmnt.id)===String(id));
+    console.log(idx);
+    if(idx!==-1)
+    {
+        console.log(reviewList[idx]);
+        givenReview.innerHTML = reviewList[idx].review;
+        givenRating.innerHTML = reviewList[idx].rating;
+    }
+    else
+    {
+        givenReview.innerHTML = "";
+        givenRating.innerHTML = "";
+    }
     scrollToPageEnd();
 }
 
-
 function scrollToPageEnd() {
-    const scrollDuration = 1000;
+    const scrollDuration = 500;
     const endPosition = document.documentElement.scrollHeight - window.innerHeight;
     window.scrollTo({
       top: endPosition,
-      behavior: 'smooth'
+      behavior: 'smooth',
+      duration: scrollDuration
     });
   }
 
 
+function submitRating()
+{
+    let val = event.target.value;
+    let idx = -1;
+    if(reviewList.length)idx=reviewList.findIndex(elmnt => String(elmnt.id)===String(crntId));
+    if(idx===-1)
+    {
+        reviewList.push({id:crntId,rating:val,review:""});
+    }
+    else
+    {
+        reviewList[idx].rating = val;
+    }
+    localStorage.setItem("reviewList", JSON.stringify(reviewList));
+    givenRating.innerHTML = val;
+    event.target.value = "";
+}
 
-{/* <div class="movie-details" id="movieDetails">
-        <img src="https://m.media-amazon.com/images/M/MV5BMTMxMjU0MTMxMl5BMl5BanBnXkFtZTcwNjY4Mjc3MQ@@._V1_SX300.jpg" alt="Movie Poster">
-        <h2>The Top 14 Perform</h2>
-        <p><strong>Year:</strong> 2008</p>
-        <p><strong>Rated:</strong> N/A</p>
-        <p><strong>Runtime:</strong> N/A</p>
-        <p><strong>Genre:</strong> Music, Reality-TV</p>
-        <p><strong>Director:</strong> Don Weiner</p>
-        <p><strong>Writer:</strong> Simon Fuller, Nigel Lythgoe</p>
-        <p><strong>Actors:</strong> Joshua Allen, Stephen Boss, Cat Deeley</p>
-        <p><strong>Plot:</strong> Host Cat Deeley promised at the outset that the final 14 dancers will face some changes and the competition would get more difficult for the final seven couples. She soon explained that each of the couples would have to dance twic...</p>
-        <p><strong>Language:</strong> N/A</p>
-        <p><strong>Country:</strong> N/A</p>
-        <p><strong>Awards:</strong> N/A</p>
-        <p><strong>IMDb Rating:</strong> N/A</p>
-        <p><strong>IMDb Votes:</strong> 21</p>
-        <p><strong>Type:</strong> episode</p>
-    </div> */}
+function submitReview()
+{
+    let val = review.value;
+    console.log(val);
+    if(val==="")return;
+    let idx = -1;
+    if(reviewList.length)idx=reviewList.findIndex(elmnt => String(elmnt.id)===String(crntId));
+    if(idx===-1)
+    {
+        reviewList.push({id:crntId,rating:"",review:val});
+    }
+    else
+    {
+        reviewList[idx].review = val;
+    }
+    localStorage.setItem("reviewList", JSON.stringify(reviewList));
+    givenReview.innerHTML = val;
+    review.val = "";
+}
+
+function initValues(){
+    if(reviewList.length===0)return
+    givenReview.innerHTML = reviewList[0].review;
+    givenRating.innerHTML = reviewList[0].rating;
+}
+initValues();
+// localStorage.clear();
