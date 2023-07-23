@@ -97,3 +97,45 @@ main {
     cursor: pointer;
     transition: background-color 0.3s ease;
   }
+
+  .rating-container, .review-container {
+    margin-bottom: 20px;
+  }
+  
+  .rating-label, .review-label {
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .rating-stars {
+    display: inline-block;
+    position: relative;
+    height: 24px;
+  }
+  
+  .rating-stars input {
+    display: none;
+  }
+  
+  .rating-stars label {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background-image: url('star.png'); /* Replace with your star image */
+    background-size: cover;
+  }
+  
+  .rating-stars label:hover,
+  .rating-stars input:checked ~ label {
+    background-image: url('star_filled.png'); /* Replace with your filled star image */
+  }
+  
+  .review-container textarea {
+    width: 100%;
+    height: 100px;
+    padding: 5px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+  }
