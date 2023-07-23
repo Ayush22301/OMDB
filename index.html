@@ -18,7 +18,7 @@
 
     <h3>Search Results</h3>
     <div id="movieList"></div>
-
+    <hr>
     <h4>Results : <span id="totResSpan"></span></h4>
     <h4>Total Pages : <span id="totPagesSpan"></span></h4>
     <div id="pagination">
@@ -33,26 +33,56 @@
     <div class="movie-details" id="movieDetails">
         
     <img src="https://m.media-amazon.com/images/M/MV5BMjE5MzcyNjk1M15BMl5BanBnXkFtZTcwMjQ4MjcxOQ@@._V1_SX300.jpg" alt="Iron Man 3 Poster">
-    <h2>Title: Iron Man 3</h2>
-    <p>Year: 2013</p>
-    <p>Rated: PG-13</p>
-    <p>Released: 03 May 2013</p>
-    <p>Runtime: 130 min</p>
-    <p>Genre: Action, Adventure, Sci-Fi</p>
-    <p>Director: Shane Black</p>
-    <p>Writer: Drew Pearce, Shane Black, Stan Lee</p>
-    <p>Actors: Robert Downey Jr., Guy Pearce, Gwyneth Paltrow</p>
-    <p>Plot: When Tony Stark's world is torn apart by a formidable terrorist called the Mandarin, he starts an odyssey of rebuilding and retribution.</p>
-    <p>Language: English</p>
-    <p>Country: United States</p>
-    <p>Awards: Nominated for 1 Oscar. 20 wins & 63 nominations total</p>
-    <p>Metascore: 62</p>
-    <p>IMDb Rating: 7.1</p>
-    <p>IMDb Votes: 872,517</p>
-    <p>Type: movie</p>
-    <p>DVD: 24 Sep 2013</p>
-    <p>Box Office: $409,013,994</p>
-    <p>Production: N/A</p>
+    <h2><b>Title:</b> Iron Man 3</h2>
+    <p><b>Year:</b> 2013</p>
+    <p><b>Rated:</b> PG-13</p>
+    <p><b>Released:</b> 03 May 2013</p>
+    <p><b>Runtime:</b> 130 min</p>
+    <p><b>Genre:</b> Action, Adventure, Sci-Fi</p>
+    <p><b>Director:</b> Shane Black</p>
+    <p><b>Writer:</b> Drew Pearce, Shane Black, Stan Lee</p>
+    <p><b>Actors:</b> Robert Downey Jr., Guy Pearce, Gwyneth Paltrow</p>
+    <p><b>Plot:</b> When Tony Stark's world is torn apart by a formidable terrorist called the Mandarin, he starts an odyssey of rebuilding and retribution.</p>
+    <p><b>Language:</b> English</p>
+    <p><b>Country:</b> United States</p>
+    <p><b>Awards:</b> Nominated for 1 Oscar. 20 wins & 63 nominations total</p>
+    <p><b>Metascore:</b> 62</p>
+    <p><b>IMDb Rating:</b> 7.1</p>
+    <p><b>IMDb Votes:</b> 872,517</p>
+    <p><b>Type:</b> movie</p>
+    <p><b>DVD:</b> 24 Sep 2013</p>
+    <p><b>Box Office:</b> $409,013,994</p>
+    <p><b>Production:</b> N/A</p>
+
+    <hr>
+
+    <div class="rating-container">
+      <span class="rating-label">Give Rating (right to left -> 1 to 5):</span>
+      <div class="rating-stars">
+        <input type="radio" name="rating" id="star5" value="5" onclick="submitRating()">
+        <label for="star5"></label>
+        <input type="radio" name="rating" id="star4" value="4" onclick="submitRating()">
+        <label for="star4"></label>
+        <input type="radio" name="rating" id="star3" value="3" onclick="submitRating()">
+        <label for="star3"></label>
+        <input type="radio" name="rating" id="star2" value="2" onclick="submitRating()">
+        <label for="star2"></label>
+        <input type="radio" name="rating" id="star1" value="1" onclick="submitRating()">
+        <label for="star1"></label>
+      </div>
+    </div>
+    <div class="review-container">
+      <span class="review-label">Give Review:</span>
+      <textarea id="review" placeholder="Write your review here..." value=""></textarea>
+      <button onclick="submitReview()" style="margin-bottom: 4%;">Submit</button>
+      <hr>
+      <span class="rating-label">Your Rating:</span>
+      <h4 id="givenRating"></h4>
+      <span class="rating-label">Your Review:</span>
+      <p id="givenReview"></p>
+    </div>
+
+
     </div>
   </main>
   <footer>
